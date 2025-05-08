@@ -19,6 +19,11 @@ resource "github_repository" "kanban" {
   auto_init              = true
   gitignore_template     = "Terraform"
   delete_branch_on_merge = true
+  homepage_url           = "https://www.pragprog.com/titles/beamops/engineering-elixir-applications/"
+
+  allow_squash_merge  = true
+  allow_merge_commit  = false
+  allow_rebase_merge  = false
 }
 
 resource "github_issue_label" "issues_labels" {
