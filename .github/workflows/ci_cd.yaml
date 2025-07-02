@@ -17,13 +17,6 @@ jobs:
 
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Show cache key
-        run: |
-          echo "Cache Key: mix-${{ hashFiles('**/mix.lock') }}"
-
-      - name: List files
-        run: ls -l mix.lock
       
       - name: Cache deps dir
         uses: actions/cache@v4
@@ -35,7 +28,6 @@ jobs:
           key: mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
             mix-
-
 
       - name: Set up Elixir
         uses: erlef/setup-beam@v1.17.3
