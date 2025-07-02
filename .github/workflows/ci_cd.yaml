@@ -14,14 +14,20 @@ jobs:
       ImageOS: ubuntu22
     
     steps:
-      - name: Cache deps dir
+      - name: Show cache key
+        run: echo "Cache Key: mix-${{ hashFiles('**/mix.lock') }}"
+
+      - name: List files
+        run: ls -l mix.lock
+      
+        - name: Cache deps dir
         uses: actions/cache@v4
         id: cache-deps
         with:
           path: |
             deps
             _build
-          key: mix-${{ hashFiles('mix.lock') }}
+          key: mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
             mix-
 
