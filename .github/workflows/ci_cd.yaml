@@ -21,9 +21,9 @@ jobs:
           path: |
             deps
             _build
-          key: foo-mix-${{ hashFiles('**/mix.lock') }}
+          key: mix-${{ hashFiles('mix.lock') }}
           restore-keys: |
-            foo-mix-
+            mix-
 
       - name: Checkout code
         uses: actions/checkout@v4
