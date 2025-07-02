@@ -15,12 +15,13 @@ jobs:
     
     steps:
       - name: Show cache key
-        run: echo "Cache Key: mix-${{ hashFiles('**/mix.lock') }}"
+        run: |
+          echo "Cache Key: mix-${{ hashFiles('**/mix.lock') }}"
 
       - name: List files
         run: ls -l mix.lock
       
-        - name: Cache deps dir
+      - name: Cache deps dir
         uses: actions/cache@v4
         id: cache-deps
         with:
