@@ -14,7 +14,10 @@ jobs:
       ImageOS: ubuntu22
     
     steps:
-
+      - name: Get dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: mix.deps.get
+        
       - name: Checkout code
         uses: actions/checkout@v4
       
