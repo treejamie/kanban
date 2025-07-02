@@ -62,3 +62,6 @@ jobs:
 
       - name: Check code is formatted
         run: mix format --check-formatted
+
+      - name: Check unused dependencies
+        run: mix deps.unlock --check-unused
