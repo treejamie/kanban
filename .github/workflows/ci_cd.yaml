@@ -11,7 +11,7 @@ jobs:
 
     env:
       MIX_ENV: test
-
+      ImageOS: ubuntu22
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
