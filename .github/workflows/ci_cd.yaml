@@ -23,7 +23,7 @@ jobs:
             _build
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: |
-            ${{ runner.os }}-mix
+            ${{ runner.os }}-mix-
 
       - name: Checkout code
         uses: actions/checkout@v4
