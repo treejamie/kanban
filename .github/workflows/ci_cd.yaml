@@ -14,6 +14,10 @@ jobs:
       ImageOS: ubuntu22
     
     steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Show cache key
         run: |
           echo "Cache Key: mix-${{ hashFiles('**/mix.lock') }}"
@@ -32,8 +36,6 @@ jobs:
           restore-keys: |
             mix-
 
-      - name: Checkout code
-        uses: actions/checkout@v4
 
       - name: Set up Elixir
         uses: erlef/setup-beam@v1.17.3
