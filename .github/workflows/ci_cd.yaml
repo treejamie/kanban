@@ -12,7 +12,19 @@ jobs:
     env:
       MIX_ENV: test
       ImageOS: ubuntu22
+    
     steps:
+      - name: Cache deps dir
+        uses: actions/cache@v4
+        id: cache-deps
+        with:
+          path: |
+            deps
+            _build
+          key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-mix
+
       - name: Checkout code
         uses: actions/checkout@v4
 
