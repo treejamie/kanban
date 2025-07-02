@@ -34,6 +34,10 @@ jobs:
           restore-keys: |
             mix-
 
+      - name: Get dependencies
+        if: steps.cache-deps.outputs.cache-hit != 'true'
+        run: mix deps.get
+
       - name: Cache plt files
         uses: actions/cache@v4
         env:
@@ -49,10 +53,6 @@ jobs:
             
       - name: Dialyzer static analysis
         run: mix dialyzer --format github
-
-      - name: Get dependencies
-        if: steps.cache-deps.outputs.cache-hit != 'true'
-        run: mix deps.get
 
       - name: Compile
         run: mix compile --warnings-as-errors
