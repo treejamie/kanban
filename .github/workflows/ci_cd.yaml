@@ -97,9 +97,12 @@ jobs:
       - uses: docker/build-push-action@v5
         with:
           context: .
+          cache-from: type=registry,ref=ghcr.io/YOUR_USERNAME/kanban:cache
+          cache-to: type=registry,ref=ghcr.io/YOUR_USERNAME/kanban:cache,mode=max
           tags: ${{ steps.meta.outputs.tags }}
+          platforms: linux/amd64,linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
           push: true
           build-args: |
-            ELIXIR_VERSION=${{ env.ELIXIR_VERSION}}
-            OTP_VERSION=${{ env.ERLANG_VERSION}}
+            ELIXIR_VERSION=${{ env.ELIXIR_VERSION }}
+            OTP_VERSION=${{ env.ERLANG_VERSION }}
