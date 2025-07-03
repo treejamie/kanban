@@ -1,4 +1,4 @@
 # Kanban
 
 
-This is the source code for the book "Engineering Elixir Applications"
+This is the source code for the book "Engineering Elixir Applications".
