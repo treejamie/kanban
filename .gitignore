@@ -78,3 +78,7 @@ priv/static/cache_manifest.json
 # priv static
 /priv/static/
 /priv/static/cache_manifest.json
+
+# ignore plt files
+/priv/plts/*.plt
+/priv/plts/*.plt.hash
