@@ -1,0 +1,15 @@
+services:
+  db:
+    ports:
+      - ${POSTGRES_PORT:-5433}
+    image: postgres
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username=postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      restart_policy:
+        condition: on-failure
+    environment:
+      POSTGRES_PASSWORD: postgres
