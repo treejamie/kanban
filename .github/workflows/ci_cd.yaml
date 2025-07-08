@@ -10,12 +10,23 @@ on:
 jobs:
   ci:
     runs-on: ubuntu-latest 
-    name: Compile
+    name: Compile with mix test, format, dialyzer & unused deps check
 
     env:
       MIX_ENV: test
       ImageOS: ubuntu22
-    
+    services:
+      postgres:
+        image: postgres:15.2 
+        env:
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
