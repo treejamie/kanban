@@ -35,3 +35,7 @@ kanban-*.tar
 npm-debug.log
 /assets/node_modules/
 
+*.plt
+*.plt.hash
+_build/*/dialyzer_tmp/
+priv/plts/
