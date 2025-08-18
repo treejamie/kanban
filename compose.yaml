@@ -25,6 +25,8 @@ services:
         max_attempts: 3
         window: 120s
     environment:
+      # obviously, this is a terrible idea  for a production app these two would
+      # be under some kind of secret management...
       DATABASE_URL: ecto://postgres:postgres@db/postgres
       SECRET_KEY_BASE: JLKlYN7ftyehH+lBttJbm9WB9JF6OfaVGYVlsb+QmL4v9DhN2E1BE5eEOgwjZFMZ
       PHX_HOST: "localhost"
