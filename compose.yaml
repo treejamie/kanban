@@ -1,0 +1,41 @@
+services:
+  db:
+    ports:
+      - ${POSTGRES_PORT:-5432}
+    image: postgres:17.6
+    healthcheck:
+      test: ["CMD", "pg_isready", "--username=postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    deploy:
+      restart_policy:
+        condition: on-failure
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgres/data
+    volumes:
+      - db_data:/var/lib/postgresql/data
+  web:
+    image: ${WEB_IMAGE:-ghcr.io/treejamie/kanban:latest}
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+        window: 120s
+    environment:
+      # obviously, this is a terrible idea  for a production app these two would
+      # be under some kind of secret management...
+      DATABASE_URL: ecto://postgres:postgres@db/postgres
+      SECRET_KEY_BASE: JLKlYN7ftyehH+lBttJbm9WB9JF6OfaVGYVlsb+QmL4v9DhN2E1BE5eEOgwjZFMZ
+      PHX_HOST: "localhost"
+    ports:
+      - 4000:4000
+    depends_on:
+      - db
+    command: >
+      bash -c "bin/migrate && bin/server"
+    
+volumes:
+  db_data:
