@@ -9,7 +9,7 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest 
+    runs-on: self-hosted
     name: Compile with mix test, format, dialyzer & unused deps check
 
     env:
